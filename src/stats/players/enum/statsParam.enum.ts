@@ -1,0 +1,15 @@
+export enum StatsParam {
+  'SINGLE_SEASON' = 'statsSingleSeason',
+  'YEAR_BY_YEAR' = 'yearByYear',
+  'HOME_AND_AWAY' = 'homeAndAway',
+  'WIN_LOSS' = 'winLoss',
+  'BY_MONTH' = 'byMonth',
+  'BY_DAY_OF_WEEK' = 'byDayOfWeek',
+  'VS_DIVISION' = 'vsDivision',
+  'VS_CONFERENCE' = 'vsConference',
+  'VS_TEAM' = 'vsTeam',
+  'GAME_LOG' = 'gameLog',
+  'REGULAR_SEASON_STAT_RANKINGS' = 'regularSeasonStatRankings',
+  'GOAL_BY_GAME_SITUATION' = 'goalsByGameSituation',
+  'ON_PACE_REGULAR_SEASON' = 'onPaceRegularSeason',
+}

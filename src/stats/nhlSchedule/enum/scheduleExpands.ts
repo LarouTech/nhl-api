@@ -1,0 +1,27 @@
+import { scheduled } from 'rxjs';
+
+export enum ScheduleExpands {
+  'LINESCORE' = 'schedule.linescore',
+  'SCORING_PLAYS' = 'schedule.scoringplays',
+  'DECISIONS' = 'schedule.decisions',
+  'TEAMS' = 'schedule.teams',
+  'TICKET' = 'schedule.ticket',
+  'VENUE' = 'schedule.venue',
+  'BROADCASTS' = 'schedule.broadcasts',
+  'BROADCAST_ALL_COUNTRIES' = 'schedule.broadcasts.all',
+  'RADIO_BROADCASTS' = 'schedule.radioBroadcasts',
+  'METADATA' = 'schedule.metadata',
+  'CONTENT_ALL' = 'schedule.game.content.all',
+  'CONTENT_MEDIA_ALL' = 'schedule.game.content.media.all',
+  'CONTENT_EDITORIAL_ALL' = 'schedule.game.content.editorial.all',
+  'CONTENT_EDITORIAL_PREVIEW' = 'schedule.game.content.editorial.preview',
+  'CONTENT_EDITORIAL_RECAP' = 'schedule.game.content.editorial.recap',
+  'CONTENT_EDITORIAL_ARTICLES' = 'schedule.game.content.editorial.articles',
+  'CONTENT_MEDIA_EPG' = 'schedule.game.content.media.epg',
+  'CONTENT_MEDIA_MILESTONES' = 'schedule.game.content.media.milestones',
+  'CONTENT_HIGHLIGHT_ALL' = 'schedule.game.content.highlights.all',
+  'CONTENT_HIGHLIGHTS_SCOREBOARD' = 'schedule.game.content.highlights.scoreboard',
+  'CONTENT_HIGHLIGHTS_GAMECENTER' = 'schedule.game.content.highlights.gamecenter',
+  'CONTENT_HIGHLIGHTS_MILESTONE' = 'schedule.game.content.highlights.milestone',
+  'SERIES_SUMMARY' = 'schedule.game.seriesSummary',
+}

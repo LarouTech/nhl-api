@@ -1,0 +1,33 @@
+export interface DraftPlayer {
+  id: number;
+  ageInDays: number;
+  ageInDaysForYear: number;
+  ageInYears: number;
+  amateurClubName: string;
+  amateurLeague: string;
+  birthDate: string;
+  birthPlace: string;
+  countryCode: string;
+  csPlayerId: number;
+  draftDate: string;
+  draftMasterId: number;
+  draftYear: number;
+  draftedByTeamId: number;
+  firstName: string;
+  height: number;
+  lastName: string;
+  notes: null;
+  overallPickNumber: number;
+  pickInRound: number;
+  playerId: number;
+  playerName: string;
+  position: string;
+  removedOutright: string;
+  removedOutrightWhy: null;
+  roundNumber: number;
+  shootsCatches: string;
+  supplementalDraft: string;
+  teamPickHistory: string;
+  triCode: string;
+  weight: number;
+}

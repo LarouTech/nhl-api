@@ -1,0 +1,16 @@
+export enum TeamExpandsType {
+  'LEAGUE' = 'team.league',
+  'STATS' = 'team.stats',
+  'ROSTER' = 'team.roster',
+  'DIVISION' = 'team.division',
+  'CONFERENCE' = 'team.conference',
+  'FRANCHSIE' = 'team.franchise',
+  'LEADERS' = 'team.leaders',
+  'SCHEDULE_NEXT' = 'team.schedule.next',
+  'TICKET' = 'team.ticket',
+  'PLAYOFFS' = 'team.playoffs',
+  'NAME' = 'team.name',
+  'SOCIAL' = 'team.social',
+  'DEVICE_PROPERTIES' = 'team.deviceProperties',
+  'CONTENT_SECTION' = 'team.content.sections',
+}
