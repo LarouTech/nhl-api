@@ -8,14 +8,6 @@ import { PlayoffGame } from './interfaces/playoffGame.interface';
 export class GamesController {
   constructor(private games: GamesService) {}
 
-  @Get(':id')
-  getGame(
-    @Param('id') id: number,
-    @Query('gameDataType') gameDataType: GameDataType,
-  ): Observable<Game> {
-    return this.games.getGameData(id, gameDataType);
-  }
-
   @Get('playoff')
   getPlayoffGames(
     @Query('gameId') gameId: number,
@@ -29,5 +21,13 @@ export class GamesController {
       playoffRound,
       seasonId,
     );
+  }
+
+  @Get(':id')
+  getGame(
+    @Param('id') id: number,
+    @Query('gameDataType') gameDataType: GameDataType,
+  ): Observable<Game> {
+    return this.games.getGameData(id, gameDataType);
   }
 }

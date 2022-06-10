@@ -4,7 +4,7 @@ export enum TeamExpandsType {
   'ROSTER' = 'team.roster',
   'DIVISION' = 'team.division',
   'CONFERENCE' = 'team.conference',
-  'FRANCHSIE' = 'team.franchise',
+  'FRANCHISE' = 'team.franchise',
   'LEADERS' = 'team.leaders',
   'SCHEDULE_NEXT' = 'team.schedule.next',
   'TICKET' = 'team.ticket',

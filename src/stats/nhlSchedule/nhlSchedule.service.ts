@@ -102,11 +102,13 @@ export class NhlScheduleService {
           : `${queryParameter}&gameType=${gameType}`;
     }
 
-    const url = `${this.url}/schedule${queryParameter ? queryParameter : ''}`;
+    let url = `${this.url}/schedule${queryParameter ? queryParameter : ''}`;
+
+    url = `${url}&expand=${ScheduleExpands.SERIES_SUMMARY}&expand=${ScheduleExpands.CONTENT_ALL}`;
 
     return this.http.get(url).pipe(
       map((res) => {
-        return res.data.dates[0];
+        return res.data.dates.length > 0 ? res.data.dates : res.data.dates[0];
       }),
       this.logger.serviceUnavailbaleRxjsPipe(),
     );

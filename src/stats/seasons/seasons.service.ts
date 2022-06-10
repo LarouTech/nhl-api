@@ -16,8 +16,8 @@ export class SeasonsService {
   ) {}
 
   getseason(season?: number, current?: string | boolean): Observable<Season[]> {
-    console.log(`season: ${season}`);
-    console.log(`current: ${current}`);
+    // console.log(`season: ${season}`);
+    // console.log(`current: ${current}`);
 
     if (season && current) {
       throw new HttpException(

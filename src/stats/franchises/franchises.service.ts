@@ -30,8 +30,20 @@ export class FranchisesService {
 
   getFranchises(
     id?: string | number,
+    logos?: boolean,
   ): Observable<Franchise[]> | Observable<Franchise> {
-    const url = id ? `${this.url}/franchises/${id}` : `${this.url}/franchises`;
+    let url = id ? `${this.url}/franchises/${id}` : `${this.url}/franchises`;
+
+    if (logos && !isBoolean(logos)) {
+      throw new HttpException(
+        'query parameter logos must be boolean',
+        HttpStatus.FORBIDDEN,
+      );
+    }
+
+    if (logos) {
+      url = `${url}?include=teams.active&include=teams.logos&include=teams.franchiseTeam.firstSeason.id&include=teams.franchiseTeam.lastSeason.id&include=teams.id`;
+    }
 
     return this.http.get(url).pipe(
       map((res) => {

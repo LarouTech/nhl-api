@@ -35,6 +35,8 @@ export class GamesService {
       );
     }
 
+    console.log(gameDataType);
+
     switch (gameDataType) {
       case GameDataType.LIVE:
         url = `${url}/feed/live`;
@@ -49,6 +51,7 @@ export class GamesService {
         url = `${url}/content`;
 
       default:
+        // url = `${url}/feed/live`;
         break;
     }
 

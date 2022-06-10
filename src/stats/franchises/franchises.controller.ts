@@ -9,8 +9,10 @@ export class FranchisesController {
   constructor(private franchises: FranchisesService) {}
 
   @Get()
-  getFranchises(): Observable<Franchise[] | Franchise> {
-    return this.franchises.getFranchises(null);
+  getFranchises(
+    @Query('logos') logos: boolean,
+  ): Observable<Franchise[] | Franchise> {
+    return this.franchises.getFranchises(null, logos);
   }
 
   @Get('all-time')
@@ -37,7 +39,8 @@ export class FranchisesController {
   @Get(':id')
   getFranchise(
     @Param('id') id: string | number,
+    @Query('logos') logos: boolean,
   ): Observable<Franchise[] | Franchise> {
-    return this.franchises.getFranchises(id);
+    return this.franchises.getFranchises(id, logos);
   }
 }
