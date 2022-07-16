@@ -9,7 +9,7 @@ import { DraftModule } from './stats/draft/draft.module';
 import { FranchisesModule } from './stats/franchises/franchises.module';
 import { GamesModule } from './stats/games/games.module';
 import { NhlStatsModule } from './stats/nhlApiConfigurations/nhlApiConfigurations.module';
-import { PeopleModule } from './stats/players/player.module';
+import { PeopleModule } from './stats/player/player.module';
 import { SeasonsModule } from './stats/seasons/seasons.module';
 import { StandingsModule } from './stats/standings/standings.module';
 import { TeamsModule } from './stats/teams/teams.module';

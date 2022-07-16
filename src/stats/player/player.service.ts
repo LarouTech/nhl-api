@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import {
   BehaviorSubject,
   combineLatest,
+  forkJoin,
   lastValueFrom,
   map,
   Observable,
@@ -38,9 +39,7 @@ export class PlayerService {
     private http: HttpService,
     private logger: ApiLoggerService,
     private teams: TeamsService,
-  ) {
-    lastValueFrom(this.fetchAllPlayersFromTeams());
-  }
+  ) {}
 
   getPlayerDetails(
     id: string,
@@ -178,25 +177,27 @@ export class PlayerService {
     );
   }
 
-  private fetchAllPlayersFromTeams(): Observable<TeamRoster[]> {
-    return this.teams.getTeams(null, TeamExpandsType.ROSTER).pipe(
+  private fetchAllPlayersFromTeams(season: number): Observable<TeamRoster[]> {
+    return this.teams.getTeams(null, TeamExpandsType.ROSTER, season).pipe(
       map((teams: Teams[]) => {
         const rosters: TeamRoster[] = [];
 
         teams.map((team) => {
-          team.roster.roster.map((player) => {
-            rosters.push(player);
-          });
+          if (team.roster) {
+            team.roster.roster.map((player) => {
+              rosters.push(player);
+            });
+          }
         });
 
         this._allPlayers.next(rosters);
+
         return rosters;
       }),
     );
   }
 
-  getAllPlayersDetailsAndStats(statsParam: StatsParam): Observable<Player[]> {
-    console.log('run');
+  getAllPlayersDetailsAndStats(statsParam: StatsParam, season: number) {
     if (
       statsParam &&
       (statsParam === StatsParam.GAME_LOG ||
@@ -210,19 +211,28 @@ export class PlayerService {
 
     const rosterPerTeam = [];
 
-    this._allPlayers.getValue().forEach((roster) => {
-      const obs$ = this.getPlayerDetailsAndStats(
-        roster.person.id.toString(),
-        statsParam ? statsParam : StatsParam.SINGLE_SEASON,
-      );
+    const obs$ = this.fetchAllPlayersFromTeams(season).pipe(
+      map((rosters) => {
+        rosters.forEach((roster) => {
+          const obs$ = this.getPlayerDetailsAndStats(
+            roster.person.id.toString(),
+            statsParam ? statsParam : StatsParam.SINGLE_SEASON,
+            season,
+          );
 
-      rosterPerTeam.push(obs$);
-    });
+          rosterPerTeam.push(obs$);
+        });
 
-    return combineLatest([...rosterPerTeam]).pipe(
-      map((data) => {
-        return data as Player[];
+        return rosterPerTeam;
       }),
     );
+
+    return lastValueFrom(obs$).then(() => {
+      return combineLatest([...rosterPerTeam]).pipe(
+        map((data) => {
+          return data as Player[];
+        }),
+      );
+    });
   }
 }

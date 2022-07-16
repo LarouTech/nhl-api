@@ -1,4 +1,4 @@
-import { PlayerStats } from 'src/stats/players/interfaces/playerStats.interface';
+import { PlayerStats } from 'src/stats/player/interfaces/playerStats.interface';
 
 export interface TeamRoster {
   person: {

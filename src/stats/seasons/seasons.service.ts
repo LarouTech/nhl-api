@@ -54,8 +54,6 @@ export class SeasonsService {
       url = `${url}/current`;
     }
 
-    console.log(url);
-
     return this.http.get(url).pipe(
       map((res) => {
         return res.data.seasons;

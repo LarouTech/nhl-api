@@ -17,6 +17,7 @@ export class NhlScheduleController {
     @Query('startDate') startDate: string,
     @Query('endDate') endDate: string,
     @Query('gameType') gameType: GameType,
+    @Query('season') season: string,
   ): Observable<Schedule> {
     return this.scheduleService.getSchedule(
       expand,
@@ -25,6 +26,7 @@ export class NhlScheduleController {
       startDate,
       endDate,
       gameType,
+      season,
     );
   }
 }

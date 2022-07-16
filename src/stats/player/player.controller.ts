@@ -1,5 +1,4 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { Cron, CronExpression, Interval } from '@nestjs/schedule';
 import { Observable } from 'rxjs';
 import { PlayerExpands } from './enum/playerExpands';
 import { StatsParam } from './enum/statsParam.enum';
@@ -12,9 +11,17 @@ import { PlayerService } from './player.service';
 export class PlayersController {
   constructor(private players: PlayerService) {}
 
+  // @Get()
+  // getPlayers() {
+  //   return this.players.
+  // }
+
   @Get('all')
-  getAllPlayersDetailsAndStats(@Query('statsParam') statsParam: StatsParam) {
-    return this.players.getAllPlayersDetailsAndStats(statsParam);
+  getAllPlayersDetailsAndStats(
+    @Query('statsParam') statsParam: StatsParam,
+    @Query('season') season?: number,
+  ) {
+    return this.players.getAllPlayersDetailsAndStats(statsParam, season);
   }
 
   @Get(':id')

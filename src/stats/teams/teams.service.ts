@@ -1,5 +1,5 @@
 import { HttpService } from '@nestjs/axios';
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { map, Observable } from 'rxjs';
 import { ApiLoggerService } from '../../apiLogger/apiLogger.service';
@@ -21,19 +21,20 @@ export class TeamsService {
   getTeams(
     id?: string | number,
     expand?: TeamExpandsType,
+    season?: number,
   ): Observable<Teams[] | Teams> {
-    const url = id
-      ? `${this.url}/teams/${id}?expand=${expand ? expand : ''}`
-      : `${this.url}/teams?expand=${expand ? expand : ''}`;
-
-    if (expand && !Object.values(TeamExpandsType).includes(expand)) {
-      throw new HttpException(
-        'invalid expamd parameter. Must be a ScheduleExpands enum',
-        HttpStatus.FORBIDDEN,
-      );
+    let url = `${this.url}/teams`;
+    if (id) {
+      url = `${url}/${id}`;
     }
 
-    console.log(url);
+    if (expand) {
+      url = `${url}?expand=${expand}`;
+    }
+
+    if (season) {
+      url = expand ? `${url}&season=${season}` : `${url}?season=${season}`;
+    }
 
     return this.http.get(url).pipe(
       map((res) => {

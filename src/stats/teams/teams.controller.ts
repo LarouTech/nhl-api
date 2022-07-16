@@ -12,18 +12,20 @@ export class TeamsController {
 
   @Get()
   getTeams(
+    @Query('id') id: number,
     @Query('expand') expand: TeamExpandsType,
+    @Query('season') season: number,
   ): Observable<Teams[] | Teams> {
-    return this.teams.getTeams(null, expand);
+    return this.teams.getTeams(id, expand, season);
   }
 
-  @Get(':id')
-  getTeam(
-    @Param('id') id: string | number,
-    @Query('expand') expand: TeamExpandsType,
-  ): Observable<Teams[] | Teams> {
-    return this.teams.getTeams(id, expand);
-  }
+  // @Get(':id')
+  // getTeam(
+  //   @Param('id') id: string | number,
+  //   @Query('expand') expand: TeamExpandsType,
+  // ): Observable<Teams[] | Teams> {
+  //   return this.teams.getTeams(id, expand);
+  // }
 
   @Get(':id/roster')
   getTeamRoster(@Param('id') id: string): Observable<TeamRoster> {
